@@ -2,7 +2,7 @@ interface FlashCardProps {
   word: Word;
 }
 
-interface Word {
+export interface Word {
   text: string;
   definitions: WordDefinition[];
 }

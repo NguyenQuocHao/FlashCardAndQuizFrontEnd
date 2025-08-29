@@ -1,0 +1,40 @@
+.row {
+  padding: 35px 0;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.input {
+  float: left;
+  width: 70%;
+  /* margin: 10px 0; */
+}
+
+.label {
+  float: left;
+  width: 30%;
+  text-align: left;
+  /* padding: 10px 5px; */
+}
+
+.button {
+  width: 70%;
+}
+
+@media screen and (max-width: 600px) {
+  .input {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .label {
+    margin: 10px 0 2px 0;
+    width: 100%;
+  }
+
+  .button {
+    width: 100%;
+  }
+}

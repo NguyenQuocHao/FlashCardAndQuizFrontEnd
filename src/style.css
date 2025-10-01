@@ -2,31 +2,109 @@
   padding: 35px 0;
 }
 
+.word-list {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  padding: 10px;
+}
+
+.container > div {
+  background-color: #f1f1f1;
+  border: 1px solid black;
+  padding: 10px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.icon {
+  height: 50px;
+  cursor: pointer;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }
 
+.input-item {
+  height: 40px;
+}
+
+.edit-icon {
+  /* background-color: lightgray; */
+  /* margin: 10% 20%; */
+}
+
+.delete-icon {
+  /* background-color: yellow; */
+  /* margin: 10% 20%;  */
+}
+
+.flex-text {
+  flex-grow: 1;
+}
+
+.flex-button {
+  flex-grow: 1;
+}
+
+.flex-container-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .input {
-  float: left;
   width: 70%;
-  /* margin: 10px 0; */
 }
 
 .label {
-  float: left;
   width: 30%;
   text-align: left;
-  /* padding: 10px 5px; */
 }
 
 .button {
   width: 70%;
 }
 
+.float-button {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  bottom: 30px;
+  right: 30px;
+  background-color: #1976d2;
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
+  border-radius: 50%;
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+}
+
+.add-button {
+  background-color: lightgreen;
+  margin: 30px 0;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: purple;
+  font-weight: bold;
+  border: 2px solid purple;
+}
+
 @media screen and (max-width: 600px) {
+  .word-list {
+    grid-template-columns: auto;
+  }
+
   .input {
     width: 100%;
     margin-top: 0;
+  }
+
+  .input-item {
+    width: 100%;
   }
 
   .label {
@@ -36,5 +114,53 @@
 
   .button {
     width: 100%;
+  }
+
+  .flex-container-row {
+    display: flex;
+    flex-direction: column;
+    /* align-items: baseline; */
+  }
+
+  .add-icon {
+    background-color: lightblue;
+  }
+
+  .edit-icon {
+    background-color: lightgray;
+  }
+
+  .delete-icon {
+    background-color: yellow;
+  }
+
+  .add-button {
+    /* margin: 30px 0; */
+    /* padding: 8px 20px; */
+    max-width: 100%;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 767px) {
+  .word-list {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .word-list {
+    grid-template-columns: auto auto auto;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .word-list {
+    grid-template-columns: auto auto auto auto;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .word-list {
+    grid-template-columns: auto auto auto auto auto;
   }
 }

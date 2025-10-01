@@ -18,7 +18,7 @@ interface Props {
   window?: () => Window;
 }
 
-export default function ResponsiveDrawer(props: Props) {
+export const Sidebar = (props: Props) => {
   const mobileOpen = useBearStore((state) => state.mobileOpen);
   const setMobileOpenToFalse = useBearStore(
     (state) => state.setMobileOpenToFalse
@@ -106,4 +106,4 @@ export default function ResponsiveDrawer(props: Props) {
       </Drawer>
     </Box>
   );
-}
+};

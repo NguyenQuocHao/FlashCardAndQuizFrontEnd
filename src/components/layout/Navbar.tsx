@@ -8,7 +8,7 @@ import { useBearStore } from "../../App";
 
 const drawerWidth = 240;
 
-export default function Navbar({}) {
+export const Navbar = ({}) => {
   const isClosing = useBearStore((state) => state.isClosing);
   const setMobileOpenToOpposite = useBearStore(
     (state) => state.setMobileOpenToOpposite
@@ -40,10 +40,10 @@ export default function Navbar({}) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            test
+            My List
           </Typography>
         </Toolbar>
       </AppBar>
     </>
   );
-}
+};

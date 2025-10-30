@@ -2,10 +2,20 @@ import { useEffect, useMemo, useState } from "react";
 import "../style.css";
 import { createApi, fetchApi } from "../utils/http";
 import WordListItem from "../components/WordListItem";
-import { Box, Button, MenuItem, Modal, Select, TextField } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Modal,
+  Select,
+  TextField,
+} from "@mui/material";
 import { CustomizedAlert } from "../components/CustomizedAlert";
 import { FloatButton } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
+import { cardTypes, cardTypesArray } from "../components/WordListItem";
 
 interface Level {
   level: number;
@@ -13,12 +23,17 @@ interface Level {
 }
 
 const sortOptions = {
-  alphabetical: "Alphabetical",
-  reverseAlphabetical: "Reverse Alphabetical",
-  mostRecent: "Most Recent",
-  oldest: "Oldest",
-  random: "Random",
+  alphabetical: "alphabetical",
+  reverseAlphabetical: "reverse alphabetical",
+  mostRecent: "most recent",
+  oldest: "oldest",
+  random: "random",
 };
+
+const sortOptionsArray = Object.keys(sortOptions).map((key) => ({
+  value: key,
+  label: sortOptions[key],
+}));
 
 const style = {
   position: "absolute",
@@ -32,11 +47,6 @@ const style = {
   p: 4,
 };
 
-const sortOptionsArray = Object.keys(sortOptions).map((key) => ({
-  value: key,
-  label: sortOptions[key],
-}));
-
 export const ViewWordList = () => {
   const [list, setList] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
@@ -46,6 +56,7 @@ export const ViewWordList = () => {
   const [wordInput, setWordInput] = useState("");
 
   const [sortBy, setSortBy] = useState(sortOptions.random);
+  const [displayBy, setDisplayBy] = useState(cardTypes.cardBare);
 
   const filteredList = useMemo(() => {
     let sortedList = [...list];
@@ -126,34 +137,63 @@ export const ViewWordList = () => {
         </strong>{" "}
         words/expressions
       </div>
-      <div style={{ marginTop: "0", width: "100%" }}>
-        <label className="label">Sort:</label>
-        <Select
-          value={sortBy}
-          onChange={(e) => setSortBy(e.target.value)}
-          className="input"
-          style={{ marginLeft: "10px" }}
-        >
-          {sortOptionsArray.map((opt) => {
-            return (
-              <MenuItem key={opt.value} value={opt.label}>
-                {opt.label}
-              </MenuItem>
-            );
-          })}
-        </Select>
+
+      <div style={{display: "flex", justifyContent: "center", width: "100%"}}>
+        <div style={{ width: "100%" }}>
+          <FormControl fullWidth>
+            <InputLabel id="sort-label">Sort</InputLabel>
+            <Select
+              labelId="sort-label"
+              label="Sort"
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              // className="input"
+            >
+              {sortOptionsArray.map((opt) => {
+                return (
+                  <MenuItem key={opt.value} value={opt.label}>
+                    {opt.label}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
+        </div>
+
+        <div style={{ width: "100%" }}>
+          <FormControl fullWidth>
+            <InputLabel id="display-label">Display</InputLabel>
+            <Select
+              labelId="display-label"
+              value={displayBy}
+              onChange={(e) => setDisplayBy(e.target.value)}
+              // className="input"
+              label="Display"
+            >
+              {cardTypesArray.map((opt) => {
+                return (
+                  <MenuItem key={opt.value} value={opt.label}>
+                    {opt.label}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
+        </div>
       </div>
+
       <br />
       <br />
       <div className="word-list">
         {filteredList?.map((w, index) => {
           return (
             <div key={index}>
-              <WordListItem text={w.wordContent} key={index} />
+              <WordListItem text={w.wordContent} key={index} type={displayBy} />
             </div>
           );
         })}
       </div>
+
       <Modal
         open={open}
         onClose={handleClose}

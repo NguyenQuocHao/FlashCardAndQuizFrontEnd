@@ -185,7 +185,9 @@ export const EditFlashCard = () => {
   }, []);
 
   return (
-    <div className="edit-flashcard">
+    <div
+      className="edit-flashcard"
+    >
       {isObjectEmpty(card) ? (
         <>Cannot find this word</>
       ) : (

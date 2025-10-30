@@ -481,7 +481,12 @@ export const DefinitionInputs: React.FC<DefinitionInputsProps> = ({
           </div>
 
           <div className="flex-container-row">
-            <label className="label flex-text">Note: {meaning.note}</label>
+            <label className="label flex-text">
+              Note:{" "}
+              <span style={{ fontStyle: "italic", fontWeight: "bold" }}>
+                {meaning.note}
+              </span>
+            </label>
             {renderEditInput(RenderType.NOTE)}
           </div>
 
